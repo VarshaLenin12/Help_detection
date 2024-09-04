@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="container glassmorphism">
+        <h1>Admin Page</h1>
+        <a href="{{ url_for('logout') }}" class="link">Logout</a>
+
+        <h2>Uploaded Files</h2>
+        <div class="grid-container">
+            {% for file in files %}
+                <div class="grid-item">
+                    <strong>{{ file }}</strong> <br>
+                    {% if file in metadata %}
+                        <em>Type: {{ metadata[file]['file_type'] }}</em> <br>
+                        {% if metadata[file]['file_type'] == 'image' %}
+                            <img src="{{ url_for('uploaded_file', filename=file) }}" alt="{{ file }}" class="grid-image">
+                        {% elif metadata[file]['file_type'] == 'video' %}
+                            <video class="grid-video" controls>
+                                <source src="{{ url_for('uploaded_file', filename=file) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% else %}
+                            <p>File type not supported</p>
+                        {% endif %}
+                        <p>Location: {{ metadata[file]['location'] }}</p>
+                        <p>Timestamp: {{ metadata[file]['timestamp'] }}</p>
+                    {% else %}
+                        <p>No metadata available for this file.</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

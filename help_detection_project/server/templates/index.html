@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='ind_styles.css') }}">
+</head>
+<body class="glassmorphism">
+    <div class="container">
+        <h1>Welcome to the Help Detection System</h1>
+        <p class="description">
+            Our cutting-edge Help Detection System is here to ensure the safety and well-being of all users.
+            Seamlessly integrated with advanced AI technologies, this platform offers robust security and
+            timely assistance. Get started today by logging in as an admin or learning more about how we can
+            support your needs.
+        </p>
+        <a href="{{ url_for('login') }}" class="link">Go to Admin Page</a>
+    </div>
+    <div class="bg"></div>
+</body>
+</html>
